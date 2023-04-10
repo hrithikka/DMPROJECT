@@ -6,7 +6,8 @@ models = ["distilbert-base-uncased-finetuned-sst-2-english",
           "textblob"]
 
 st.header("Sentiment Analysis App")
-text_input = st.text_area("Enter text")
+sample_text = "I like this course"
+text_input = st.text_area("Enter text",value=sample_text)
 model_select = st.selectbox("Select a model", models)
 #function that performs sentiment analysis using the selected model:
 def analyze_sentiment(text, model_name):
