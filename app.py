@@ -17,6 +17,7 @@ def analyze_sentiment(text, model_name):
         return f"label: {result['label']}, score: {result['score']}"
     elif model_name == "textblob":
         from textblob import TextBlob
+
         blob = TextBlob(text)
         polarity = blob.sentiment.polarity
         if polarity > 0:
