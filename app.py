@@ -9,7 +9,7 @@ st.header("Sentiment Analysis App")
 sample_text = "I like this course"
 text_input = st.text_area("Enter text",value=sample_text)
 model_select = st.selectbox("Select a model", models)
-#function that performs sentiment analysis using the selected model:
+#function that performs sentiment analysis using the selected model
 def analyze_sentiment(text, model_name):
     if model_name == "distilbert-base-uncased-finetuned-sst-2-english":
         classifier = pipeline("sentiment-analysis", model=model_name)
@@ -26,7 +26,7 @@ def analyze_sentiment(text, model_name):
             return "negative"
         else:
             return "neutral"
-#Call the analyze_sentiment function when the user clicks the submit button:
+#Call the analyze_sentiment function when the submit button is clicked
 if st.button("Submit"):
     result = analyze_sentiment(text_input, model_select)
     st.write("Result:", result)
