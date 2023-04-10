@@ -1,18 +1,18 @@
 #import the required libraries
 import streamlit as st
 from transformers import pipeline
-#Streamlit that allows the user to enter a text and select a pretrained model:
+#Streamlit that allows to enter a text and select a pretrained model
 models = ["distilbert-base-uncased-finetuned-sst-2-english", 
           "textblob"]
 
 st.header("Sentiment Analysis App")
-sample_text = "I like this course"
-text_input = st.text_area("Enter text",value=sample_text)
-model_select = st.selectbox("Select a model", models)
+sampletext = "I like this course"
+tinput = st.text_area("Enter text",value=sampletext)
+mselect = st.selectbox("Select a model", models)
 #function that performs sentiment analysis using the selected model
-def analyze_sentiment(text, model_name):
-    if model_name == "distilbert-base-uncased-finetuned-sst-2-english":
-        classifier = pipeline("sentiment-analysis", model=model_name)
+def sentiment_analysis(text, mname):
+    if mname == "distilbert-base-uncased-finetuned-sst-2-english":
+        classifier = pipeline("sentiment-analysis", model=mname)
         result = classifier(text)[0]
         return f"label: {result['label']}, score: {result['score']}"
     elif model_name == "textblob":
@@ -26,7 +26,7 @@ def analyze_sentiment(text, model_name):
             return "negative"
         else:
             return "neutral"
-#Call the analyze_sentiment function when the submit button is clicked
+#Call the senitment_analysis function when submit is clicked
 if st.button("Submit"):
-    result = analyze_sentiment(text_input, model_select)
+    result = sentiment_analysis(tinput, mselect)
     st.write("Result:", result)
